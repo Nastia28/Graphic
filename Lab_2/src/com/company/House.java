@@ -69,9 +69,6 @@ public class House extends JPanel implements ActionListener {
         g2d.fillRect(230, 175, 13, 13);
         g2d.fillRect(380, 205, 13, 13);
         g2d.fillRect(435, 175, 13, 13);
-
-        // Перетворення для анімації масштабу
-
     }
 
     public static void main(String[] args) {
@@ -108,9 +105,6 @@ public class House extends JPanel implements ActionListener {
             tx += deltaX;
             ty = Math.abs(Math.sqrt(radiusInSquare - Math.pow(tx, 2)));
         }
-
-
-
         scale += delta;
 
         repaint();
