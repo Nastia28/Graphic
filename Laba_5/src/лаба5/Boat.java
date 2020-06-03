@@ -106,7 +106,16 @@ public class Boat extends JFrame {
     
 
     private TransformGroup getBoatGroup() throws IOException {
-        Shape3D shape = getModelShape3D("frame0", "models/boat/Boat.obj");
+        Shape3D shape1 = getModelShape3D("chamfercyl09", "models/boat/Boat.obj");
+        Shape3D shape2 = getModelShape3D("chamfercyl11", "models/boat/Boat.obj");
+        Shape3D shape3 = getModelShape3D("chamfercyl10", "models/boat/Boat.obj");
+        Shape3D shape4 = getModelShape3D("chamfercyl08", "models/boat/Boat.obj");
+        Shape3D shape5 = getModelShape3D("cylinder03", "models/boat/Boat.obj");
+        Shape3D shape6 = getModelShape3D("chamfercyl07", "models/boat/Boat.obj");
+        Shape3D shape7 = getModelShape3D("cylinder02", "models/boat/Boat.obj");
+        Shape3D shape8 = getModelShape3D("cylinder01", "models/boat/Boat.obj");
+        Shape3D shape9 = getModelShape3D("box01", "models/boat/Boat.obj");
+        Shape3D shape10 = getModelShape3D("chamfercyl12", "models/boat/Boat.obj");
     
     	Transform3D transform3D = new Transform3D();
     	transform3D.setScale(new Vector3d(0.2, 0.2, 0.2));
@@ -116,8 +125,17 @@ public class Boat extends JFrame {
         rotationY.rotY(Math.PI/2);
         transform3D.mul(rotationY);
 
-        TransformGroup group = getModelGroup(shape);
-        group.setTransform(transform3D);
+        TransformGroup group = new TransformGroup();
+        group.addChild(shape1);
+        group.addChild(shape2);
+        group.addChild(shape3);
+        group.addChild(shape4);
+        group.addChild(shape5);
+        group.addChild(shape6);
+        group.addChild(shape7);
+        group.addChild(shape8);
+        group.addChild(shape9);
+        group.addChild(shape10);
         
         return group;
     }

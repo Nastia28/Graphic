@@ -51,15 +51,16 @@ public class Car extends JFrame{
         Background carBackground = new Background();
         
         Scene carScene = null;
-        Scene lampScene = null;
+        Scene flagScene = null;
         try{
             carScene = f.load("models/car.obj");
-            
+            flagScene = f.load("models/flag.obj");
         }
         catch (Exception e){
             System.out.println("File loading failed:" + e);
         }
         Hashtable roachNamedObjects = carScene.getNamedObjects();
+        Hashtable flagNamedObjects = flagScene.getNamedObjects();
         Enumeration enumer = roachNamedObjects.keys();
         while (enumer.hasMoreElements()){
             name = (String) enumer.nextElement();
@@ -86,6 +87,12 @@ public class Car extends JFrame{
         mat.setSpecularColor(new Color3f(0.7f,0.2f,0.1f));
         textureApp.setMaterial(mat);
         
+        
+        Transform3D tfflag = new Transform3D();
+        tfflag.setTranslation(new Vector3d(0.0f,0.955f,0.0f));
+        TransformGroup tgflag = new TransformGroup(tfflag);
+        tgflag.addChild(flagScene.getSceneGroup());
+        
        
         // start animation
         Transform3D startTransformation = new Transform3D();
@@ -93,6 +100,8 @@ public class Car extends JFrame{
         Transform3D combinedStartTransformation = new Transform3D();
         combinedStartTransformation.rotY(-3*Math.PI/2);
         combinedStartTransformation.mul(startTransformation);
+        
+        
         
         TransformGroup carStartTransformGroup = new TransformGroup(combinedStartTransformation);
 
@@ -197,6 +206,7 @@ public class Car extends JFrame{
         stars.setApplicationBounds(bounds);
         carBranchGroup.addChild(stars);
         carBackground.setApplicationBounds(bounds);
+        carBranchGroup.addChild(tgflag);
         carBranchGroup.addChild(carBackground);
         
         carBranchGroup.compile();
